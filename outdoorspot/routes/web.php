@@ -11,15 +11,19 @@
 |
 */
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/', function () {
-
-        return view('home/home');
-
-    })->name('home');
+    Route::get('/' , [
+        'uses' => 'PostController@getHome',
+        'as' => 'home'
+    ]);
 
     Route::post('/post/create', [
         'uses' => 'PostController@postCreatePost',
         'as' => 'post.create'
+    ]);
+
+    Route::get('/delete-post/{post_id}', [
+        'uses' => 'Postcontroller@getDeletePost',
+        'as' => 'post.delete'
     ]);
 
 

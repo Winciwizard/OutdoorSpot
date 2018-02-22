@@ -2,3 +2,24 @@
     padding: 16px 0;
     border-bottom: 1px solid black;
 }
+
+.success {
+    color: green;
+    background: lightgreen;
+    border: 2px solid darkgreen;
+}
+
+.error {
+     color: palevioletred;
+     background: firebrick;
+     border:2px solid lightcoral;
+}
+
+.error ul {
+    list-style-type: none;
+}
+
+.error , success {
+
+    text-align: center;
+}

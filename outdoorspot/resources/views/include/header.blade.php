@@ -10,7 +10,7 @@
             <ul class="navbar-nav">
 
                 <li class="{{ Request::is('/') ? 'active' : '' }}" >
-                    <a class="navbar-brand" href="{{url('/')}}" >
+                    <a class="navbar-brand " href="{{url('/')}}" >
                         <i class="fas fa-leaf" style="font-size:20px; color:forestgreen"></i>
                         OutDoorSpot
                     </a>
@@ -23,7 +23,7 @@
                     <a class="nav-link" href="#">Parameter</a>
                 </li>
                 <li class="nav-item" style="font-size:20px;">
-                    <a class="nav-link disabled" href="#">Search</a>
+                    <a class="nav-link " href="#">Search</a>
                 </li>
             </ul>
         </div>

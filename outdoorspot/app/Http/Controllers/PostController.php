@@ -5,9 +5,15 @@ namespace App\Http\Controllers;
 use App\Post;
 use Illuminate\Http\Request;
 
-
 class PostController extends Controller
 {
+   public function getHome()
+   {
+       $posts = Post::all();
+       return view('/home/home' , ['posts' => $posts]);
+   }
+
+
     public function postCreatePost(Request $request)
     {
         $this->validate($request, [
@@ -28,6 +34,11 @@ class PostController extends Controller
 
     }
 
-}
+    public function getDeletePost($post_id)
+    {
+       $post = Post::find($post_id)->first();
+       $post->delete();
+       return redirect()->route('home')->with(['message'=>'successfully deleted']);
+    }
 
-;
+};
