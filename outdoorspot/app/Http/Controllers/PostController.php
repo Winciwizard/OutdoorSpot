@@ -37,4 +37,9 @@ class PostController extends Controller
 
         return redirect()->back();
     }
+
+    public function getDeletePost(Post $post){
+        $post->delete();
+        return redirect()->route('dashboard');
+    }
 }
