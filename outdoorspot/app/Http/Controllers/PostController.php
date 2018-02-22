@@ -15,6 +15,10 @@ class PostController extends Controller
         return view('post/dashboard', ['posts' => $posts]);
     }
 
+    public function getPostJson(Post $post){
+        return $post->jsonSerialize();
+    }
+
     public function postCreatePost(Request $request)
     {
         $this->validate($request, [

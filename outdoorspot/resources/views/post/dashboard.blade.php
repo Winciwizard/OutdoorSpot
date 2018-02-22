@@ -20,7 +20,7 @@
         </div>
         <h3>{{$post->description}}</h3>
         <div>
-            <a href="#" class="edit">Modifier</a>
+            <a href="#" class="edit" data-postid="{{$post->id}}">Modifier</a>
             <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete">Supprimer</a>
         </div>
     </article>

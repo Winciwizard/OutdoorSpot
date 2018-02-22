@@ -25,3 +25,8 @@ Route::get('/post/delete/{post}', [
    'uses' => 'PostController@getDeletePost',
     'as' => 'post.delete'
 ]);
+
+Route::get("/post/{post}.json",[
+    'uses' => 'PostController@getPostJson',
+    'as' => 'post.getjson'
+]);
