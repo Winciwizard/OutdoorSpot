@@ -1,8 +1,12 @@
+var currentPostId = null;
+var currentPostElement = null;
+
 $('.edit').on('click', function(event) {
     event.preventDefault();
 
     var description;
-    var currentPostId = event.target.getAttribute('data-postid');
+    currentPostId = event.target.getAttribute('data-postid');
+    currentPostElement = event.target.parentNode.parentElement.childNodes[7];
     var urlPost = '/post/'+currentPostId+'.json';
 
 
@@ -20,4 +24,21 @@ $('.edit').on('click', function(event) {
         });
 
     $('#edit-modal').modal();
+});
+
+$('#modal-save').on('click', function () {
+
+
+    var urlEdit = '/post/edit/'+currentPostId;
+
+    $.ajax({
+        type: 'POST',
+        url: urlEdit,
+        timeout: 3000,
+        data: {description: $('#post-body').val(), _token: token}
+    })
+        .done(function(msg) {
+            $(currentPostElement).text(msg['newDescription']);
+            $('#edit-modal').modal('hide');
+        })
 });

@@ -26,7 +26,12 @@ Route::get('/post/delete/{post}', [
     'as' => 'post.delete'
 ]);
 
-Route::get("/post/{post}.json",[
+Route::get('/post/{post}.json',[
     'uses' => 'PostController@getPostJson',
     'as' => 'post.getjson'
+]);
+
+Route::post('/post/edit/{post}', [
+    'uses' => 'PostController@postEditPost',
+    'as' => 'post.edit'
 ]);
