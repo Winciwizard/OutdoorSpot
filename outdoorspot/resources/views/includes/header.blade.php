@@ -44,7 +44,7 @@
                         <textarea class="form-control" name="description" id="description" placeholder="Votre description" rows="5"></textarea>
                     </div>
                     <div class="form-group">
-                        <label for="image">Example file input</label>
+                        <label for="image">Photo du spot</label>
                         <input type="file" class="form-control-file" name="image" id="image">
                         <small id="imageHelp" class="form-text text-muted"><i class="fas fa-exclamation-triangle"></i>Uniquement des images en .jpg</small>
                     </div>
