@@ -11,6 +11,12 @@
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-});
+Route::get('/post/dashboard', [
+    'uses' => 'PostController@getDashboard',
+    'as' => 'dashboard'
+]);
+
+Route::post('/post/create', [
+   'uses' => 'PostController@postCreatePost',
+   'as' => 'post.create'
+]);
