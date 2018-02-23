@@ -35,19 +35,22 @@
                     <span aria-hidden="true">&times;</span>
                 </button>
             </div>
+            <form>
             <div class="modal-body">
-                <form>
                     <div class="form-group">
                         <label for="post-body">Modifier la description</label>
                         <textarea class="form-control" name="post-body" id="post-body" rows="5"></textarea>
                     </div>
-                </form>
             </div>
             <div class="modal-footer">
                 <button type="button" class="btn btn-primary" id="modal-save">Modifier</button>
                 <button type="button" class="btn btn-secondary" data-dismiss="modal">Fermer</button>
             </div>
+            </form>
         </div>
     </div>
 </div>
+    <script>
+        var token = '{{csrf_token()}}';
+    </script>
 @endsection

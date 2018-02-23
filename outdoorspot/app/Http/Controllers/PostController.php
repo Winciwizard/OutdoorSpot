@@ -42,8 +42,14 @@ class PostController extends Controller
         return redirect()->back();
     }
 
-    public function postEditPost(){
+    public function postEditPost(Post $post, Request $request){
+        $this->validate($request, [
+            'description' => 'required|max:255'
+        ]);
 
+        $post->description = $request['description'];
+        $post->update();
+        return response()->json(['newDescription' => $post->description], 200);
     }
 
     public function getDeletePost(Post $post){
