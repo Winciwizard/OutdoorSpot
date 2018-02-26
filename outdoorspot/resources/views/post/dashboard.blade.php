@@ -3,6 +3,7 @@
 @section('content')
 <div id="content">
     <h1>DERNIERS SPOTS</h1>
+    <div class="col-md-7">
 
     @foreach($posts as $post)
     <article class="post" data-postid="{{$post->id}}">
@@ -19,12 +20,17 @@
         </span>
         </div>
         <h3>{{$post->description}}</h3>
-        <div>
-            <a href="#" class="edit" data-postid="{{$post->id}}">Modifier</a>
-            <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete">Supprimer</a>
+        <div class="edit-delete">
+            <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">X</a>
+            <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">...</a>
         </div>
+        <form class="test">
+            <input type="text" class="form-control" name="comment" id="comment" placeholder="Ajouter un commentaire">
+            <button type="button" class="btn btn-light"><i class="far fa-comment"></i></button>
+        </form>
     </article>
     @endforeach
+</div>
 </div>
 <div class="modal" tabindex="-1" role="dialog" id="edit-modal">
     <div class="modal-dialog" role="document">

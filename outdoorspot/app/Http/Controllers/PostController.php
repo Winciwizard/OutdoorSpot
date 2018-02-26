@@ -33,6 +33,8 @@ class PostController extends Controller
             Storage::disk('local')->put('public/'.$cover, File::get($file));
         }
 
+
+
         $post = new Post();
         $post->place = $request['place'];
         $post->description = $request['description'];

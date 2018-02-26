@@ -1,9 +1,16 @@
-#content{
-    text-align: center;
+.test{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.edit-delete{
+    size: 10px;
+    font-weight: bold;
 }
 
 .spot-img{
-    width: 40%;
+    width: 100%;
 }
 
 #index-page
