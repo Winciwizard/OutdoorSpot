@@ -6,6 +6,7 @@
     <div class="col-md-7">
 
     @foreach($posts as $post)
+
     <article class="post" data-postid="{{$post->id}}">
         <h2>{{$post->place}}</h2>
         <img src="{{asset('storage/'.$post->file)}}" class="spot-img"/>
@@ -15,7 +16,7 @@
             </span>
             <span class="like">
             <a href="#">
-                <i class="far fa-heart"></i>
+                Like
             </a>
         </span>
         </div>
@@ -24,9 +25,15 @@
             <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">X</a>
             <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">...</a>
         </div>
-        <form class="test">
+        @foreach($post->comments as $comment)
+            <article data-postid="{{$comment->id}}">
+                <span>{{$comment->comment}}</><small>{{$comment->created_at->diffForHumans()}}</small>
+            </article>
+        @endforeach
+        <form action="{{route('comment.create', ['post' => $post->id])}}" method="post" class="test">
             <input type="text" class="form-control" name="comment" id="comment" placeholder="Ajouter un commentaire">
-            <button type="button" class="btn btn-light"><i class="far fa-comment"></i></button>
+            <button type="submit" class="btn btn-light"><i class="far fa-comment"></i></button>
+            {{csrf_field()}}
         </form>
     </article>
     @endforeach

@@ -35,3 +35,8 @@ Route::post('/post/edit/{post}', [
     'uses' => 'PostController@postEditPost',
     'as' => 'post.edit'
 ]);
+
+Route::post('/comment/create/{post}', [
+   'uses' => 'CommentController@postCreateComment',
+    'as' => 'comment.create'
+]);
