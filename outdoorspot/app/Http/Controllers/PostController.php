@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Like;
 use App\Post;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\File;
@@ -12,7 +13,8 @@ class PostController extends Controller
     public function getDashboard()
     {
         $posts = Post::with('comments')->orderBy('created_at','desc')->get();
-        return view('post/dashboard', ['posts' => $posts]);
+        $likes = Post::with('likes')->get();
+        return view('post/dashboard', ['posts' => $posts, 'likes' => $likes]);
     }
 
     public function getPostJson(Post $post){
@@ -40,6 +42,11 @@ class PostController extends Controller
         $post->description = $request['description'];
         $post->file = $cover;
         $post->save();
+
+        $like = new Like();
+        $like->like = Like::UNLIKE;
+
+        $post->likes()->save($like);
 
         return redirect()->back();
     }

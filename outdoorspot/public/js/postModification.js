@@ -6,7 +6,7 @@ $('.edit').on('click', function(event) {
 
     var description;
     currentPostId = event.target.getAttribute('data-postid');
-    currentPostElement = event.target.parentNode.parentElement.childNodes[7];
+    currentPostElement = event.target.parentNode.parentElement.childNodes[9];
     var urlPost = '/post/'+currentPostId+'.json';
 
 

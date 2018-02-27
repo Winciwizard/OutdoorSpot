@@ -40,3 +40,8 @@ Route::post('/comment/create/{post}', [
    'uses' => 'CommentController@postCreateComment',
     'as' => 'comment.create'
 ]);
+
+Route::post('/like/{post}', [
+    'uses' => 'LikeController@postLike',
+    'as' => 'like'
+]);

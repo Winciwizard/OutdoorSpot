@@ -10,24 +10,30 @@
     <article class="post" data-postid="{{$post->id}}">
         <h2>{{$post->place}}</h2>
         <img src="{{asset('storage/'.$post->file)}}" class="spot-img"/>
-        <div class="under-picture">
+        <div class="under-picture test">
             <span class="info">
                 Posted by invited on {{$post->created_at->diffForHumans()}}
             </span>
-            <span class="like">
-            <a href="#">
-                Like
-            </a>
-        </span>
+
+               @foreach($post->likes as $like)
+                    @if($like)
+                    <span class="like">
+                        <a href="#" id="{{$post->id}}">
+                            {{ \App\Like::getLike($like['like']) }}
+                        </a>
+                    </span>
+                    @endif
+                @endforeach
+        </div>
+        <div class="edit-delete test">
+            <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">...</a>
+            <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">X</a>
         </div>
         <h3>{{$post->description}}</h3>
-        <div class="edit-delete">
-            <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">X</a>
-            <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">...</a>
-        </div>
+
         @foreach($post->comments as $comment)
-            <article data-postid="{{$comment->id}}">
-                <span>{{$comment->comment}}</><small>{{$comment->created_at->diffForHumans()}}</small>
+            <article data-postid="{{$comment->id}}" class="test">
+                <span>{{$comment->comment}}</span><small>{{$comment->created_at->diffForHumans()}}</small>
             </article>
         @endforeach
         <form action="{{route('comment.create', ['post' => $post->id])}}" method="post" class="test">
