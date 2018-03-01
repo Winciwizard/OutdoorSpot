@@ -19,24 +19,3 @@ $('.like').on('click', function(event){
         });
 
 });
-
-$('.map-info').on('click', function(event){
-
-    event.preventDefault();
-
-    var urlLike = '/like/'+currentLikeId;
-
-    $.ajax({
-        type: 'POST',
-        url: '//infomap',
-        timeout: 3000,
-        data: {id: id,_token: token}
-    })
-        .done(function(msg) {
-            initMap(msg.lat, msg.lng);
-        })
-        .fail(function () {
-            alert('Impossible de charger les informations');
-        });
-
-});

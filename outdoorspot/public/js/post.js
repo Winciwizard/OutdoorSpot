@@ -42,3 +42,26 @@ $('#modal-save').on('click', function () {
             $('#edit-modal').modal('hide');
         })
 });
+
+$('.map-info').on('click', function(event){
+
+    event.preventDefault();
+
+    $('#map-modal').modal();
+
+    /**var urlLike = '/like/'+currentLikeId;
+
+    $.ajax({
+        type: 'POST',
+        url: '//infomap',
+        timeout: 3000,
+        data: {id: id,_token: token}
+    })
+        .done(function(msg) {
+            initMap(msg.lat, msg.lng);
+        })
+        .fail(function () {
+            alert('Impossible de charger les informations');
+        });
+**/
+});

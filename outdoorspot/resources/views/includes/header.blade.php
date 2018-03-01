@@ -48,9 +48,9 @@
                         <input type="file" class="form-control-file" name="image" id="image">
                         <small id="imageHelp" class="form-text text-muted"><i class="fas fa-exclamation-triangle"></i>Uniquement des images en .jpg</small>
                     </div>
-                      <div class="modal-footer">
-                          <button type="submit" class="btn btn-secondary">Send Spot</button>
-                      </div>
+                    <div class="modal-footer">
+                        <button type="submit" class="btn btn-secondary">Send Spot</button>
+                    </div>
                     {{csrf_field()}}
                 </form>
             </div>
