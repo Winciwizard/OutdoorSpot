@@ -4,14 +4,30 @@ namespace App\Http\Controllers;
 
 use App\Like;
 use App\Post;
+use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 
+/**
+ * Class LikeController
+ * @package App\Http\Controllers
+ *
+ * @property Like Likes
+ */
 class LikeController extends Controller
 {
-    public function postLike(Request $request, Post $post){
-        //@todo Gerer l'utilisateur
-        $like = DB::table('likes')->where('post_id',$request['id'])->get();
+    /**
+     * Function of like change
+     *
+     * @param Request $request
+     * @param Post $post
+     * @return JsonResponse
+     */
+    public function postLike(Request $request, Post $post): JsonResponse
+    {
+        //TODO: Gérer l'utilisateur
+        $this->Likes = DB::table('likes');
+        $like = $this->Likes->where('post_id',$request['id'])->get();
 
 
         if($like[0]->like === Like::UNLIKE){
