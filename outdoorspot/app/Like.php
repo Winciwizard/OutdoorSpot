@@ -11,6 +11,14 @@ class Like extends Model
     const UNLIKE = 0;
 
     /**
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
      * Like attached to ONE Post
      *
      * @return BelongsTo

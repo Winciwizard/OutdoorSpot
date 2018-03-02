@@ -8,8 +8,14 @@ use Illuminate\Database\Eloquent\Relations\BelongsTo;
 class Comment extends Model
 {
     /**
-     * Comment attached to ONE Post
-     *
+     * @return BelongsTo
+     */
+    public function user(): BelongsTo
+    {
+        return $this->belongsTo('App\User');
+    }
+
+    /**
      * @return BelongsTo
      */
     public function post(): BelongsTo
