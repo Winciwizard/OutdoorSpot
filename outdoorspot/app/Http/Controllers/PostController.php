@@ -17,7 +17,7 @@ class PostController extends Controller
     /**
      * Return all comment from the current post
      *
-     * Return if the current auth user like or unlike the current post
+     * Return if the current auth auth like or unlike the current post
      *
      * @return View
      */

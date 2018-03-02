@@ -1,0 +1,40 @@
+#login
+{
+    margin-top: 20%;
+}
+
+#inscription, #connexion
+{
+    padding: 20px;
+    margin: 20px;
+    background-color: white;
+    border-radius: 10px;
+    border: solid 1px grey;
+    box-shadow: 0 0 2em dimgrey;
+}
+
+#title
+{
+    text-align: center;
+}
+
+h2, h5
+{
+    font-weight: bold;
+}
+
+h5
+{
+    color: darkgrey;
+}
+
+button
+{
+    margin-top: 10px;
+}
+
+.title
+{
+    font-weight: bolder;
+    margin-bottom: 10px;
+}

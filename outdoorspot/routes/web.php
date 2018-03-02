@@ -11,6 +11,10 @@
 |
 */
 
+Route::get('/login',function (){
+    return view('auth/login');
+});
+
 Route::get('/post/dashboard', [
     'uses' => 'PostController@getDashboard',
     'as' => 'dashboard'
@@ -45,3 +49,6 @@ Route::post('/like/{post}', [
     'uses' => 'LikeController@postLike',
     'as' => 'like'
 ]);
+Auth::routes();
+
+Route::get('/home', 'HomeController@index')->name('home');
