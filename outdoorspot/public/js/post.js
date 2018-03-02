@@ -6,7 +6,7 @@ $('.edit').on('click', function(event) {
 
     var description;
     currentPostId = event.target.getAttribute('data-postid');
-    currentPostElement = event.target.parentNode.parentElement.childNodes[9];
+    currentPostElement = event.target.parentNode.parentElement.childNodes[11];
     var urlPost = '/post/'+currentPostId+'.json';
 
 
@@ -47,21 +47,24 @@ $('.map-info').on('click', function(event){
 
     event.preventDefault();
 
-    $('#map-modal').modal();
+    currentPostId = event.target.getAttribute('data-postid');
+    var urlInfoMap = '/post/'+currentPostId+'.json';
 
-    /**var urlLike = '/like/'+currentLikeId;
+    console.log(urlInfoMap);
 
     $.ajax({
-        type: 'POST',
-        url: '//infomap',
+        type: 'GET',
+        url: urlInfoMap,
         timeout: 3000,
-        data: {id: id,_token: token}
     })
-        .done(function(msg) {
-            initMap(msg.lat, msg.lng);
+        .done(function(data) {
+            var lat = data['latitude'];
+            var lng = data['longitude'];
+            initMap(lat,lng);
         })
         .fail(function () {
             alert('Impossible de charger les informations');
         });
-**/
+
+    $('#map-modal').modal();
 });

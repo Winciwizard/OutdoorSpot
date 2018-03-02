@@ -108,7 +108,7 @@
         lng = (lng !== undefined) ? lng : 131.044;
         var uluru = {lat: lat, lng: lng};
         var map = new google.maps.Map(document.getElementById('map'), {
-            zoom: 6,
+            zoom: 9,
             center: uluru
         });
         var marker = new google.maps.Marker({
