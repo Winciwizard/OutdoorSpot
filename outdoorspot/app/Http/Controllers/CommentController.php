@@ -31,5 +31,5 @@ class CommentController extends Controller
 
         return redirect()->route('dashboard');
     }
-
+    //TODO: Gestion de la suppression des commentaires
 }

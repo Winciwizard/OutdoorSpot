@@ -174,6 +174,7 @@ class PostController extends Controller
      */
     public function getDeletePost(Post $post): Response
     {
+        //TODO: Supprimer l'essemble des données, commentaires, likes et images inclus
         $post->delete();
         return redirect()->route('dashboard');
     }
