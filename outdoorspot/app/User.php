@@ -2,11 +2,13 @@
 
 namespace App;
 
+use Illuminate\Contracts\Auth\Authenticatable;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Model
+class User extends Model implements Authenticatable
 {
+    use \Illuminate\Auth\Authenticatable;
     /**
      * @return HasMany
      */
