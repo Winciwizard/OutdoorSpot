@@ -11,19 +11,26 @@
 |
 */
 
-Route::get('/login',function (){
+Route::get('/login',[
+    function (){
     return view('auth/login');
-});
+},'as' => 'login'
+]);
 
 Route::post('/user/create',[
     'uses' => 'UserController@postUserCreate',
     'as' => 'user.create'
 ]);
 
+Route::post('/user/connect',[
+    'uses' => 'UserController@postUserConnect',
+    'as' => 'user.connect'
+]);
+
 Route::get('/post/dashboard', [
     'uses' => 'PostController@getDashboard',
     'as' => 'dashboard'
-]);
+])->middleware('auth');
 
 Route::post('/post/create', [
    'uses' => 'PostController@postCreatePost',
@@ -53,4 +60,9 @@ Route::post('/comment/create/{post}', [
 Route::post('/like/{post}', [
     'uses' => 'LikeController@postLike',
     'as' => 'like'
+]);
+
+Route::get('/logout', [
+    'uses' => 'UserController@getLogout',
+    'as' => 'logout'
 ]);

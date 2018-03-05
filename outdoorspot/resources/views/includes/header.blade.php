@@ -6,6 +6,11 @@
     </div>
     <div class="col-4">
         <ul id="menu_connect">
+            <li>
+                <button type="button" class="btn" data-toggle="modal" data-target="#postSpot">
+                    <i class="fa fa-camera-retro" aria-hidden="true" id="menu_share_icon"></i>Partager
+                </button>
+            </li>
             <li class="menu_icon">
                 <a href="#" class="menu_lien">
                     <i class="fa fa-search" aria-hidden="true"></i>
@@ -16,10 +21,10 @@
                     <i class="fa fa-cog" aria-hidden="true"></i>
                 </a>
             </li>
-            <li>
-                <button type="button" class="btn" data-toggle="modal" data-target="#postSpot">
-                    <i class="fa fa-camera-retro" aria-hidden="true" id="menu_share_icon"></i>Partager
-                </button>
+            <li class="menu_icon">
+                <a href="{{route('logout')}}" class="menu_lien">
+                    <i class="fa sign-out-alt" aria-hidden="true"></i>
+                </a>
             </li>
         </ul>
     </div>

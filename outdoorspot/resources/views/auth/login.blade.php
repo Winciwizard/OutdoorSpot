@@ -27,17 +27,18 @@
             </div>
             <button type="submit" class="btn btn-danger">S'inscrire</button>
         </form>
-        <form id="connexion"action="#" method="post">
+        <form id="connexion" action="{{route('user.connect')}}" method="post">
+            @csrf
             <div class="title">
                 Connexion
             </div>
             <div class="form-group">
-                <label for="pseudo-connexion">Pseudo</label>
-                <input type="email" class="form-control" id="epseudo-connexion" aria-describedby="emailHelp" placeholder="Votre pseudonyme">
+                <label for="pseudo-connect">Pseudo</label>
+                <input type="text" class="form-control" name="pseudo-connect" id="pseudo-connect" placeholder="Votre pseudonyme">
             </div>
             <div class="form-group">
-                <label for="password-connexion">Mot de passe</label>
-                <input type="password" class="form-control" id="password-connexion" placeholder="Mot de passe">
+                <label for="password-connect">Mot de passe</label>
+                <input type="password" class="form-control" name="password-connect" id="password-connect" placeholder="Mot de passe">
             </div>
             <button type="submit" class="btn btn-success">Se connecter</button>
         </form>
