@@ -16,20 +16,11 @@
                         <img class='nano-image' src="{{asset('storage/'.$post->user['user_image'])}}"/>
                         {{strtoupper($post->user['pseudo'])}} on {{$post->getAttribute('created_at')->diffForHumans()}}
                     </span>
-
-                    @if(isset($like))
-                        <span>
-                            <a href="#" class="like" id="like-post-{{$like->id}}">
-                                <i class="fas fa-heart love"></i>
-                            </a>
-                        </span>
-                    @else
-                        <span>
-                            <a href="#" class="like" id="like-post-{{$post->id}}">
-                                <i class="far fa-heart love"></i>
-                            </a>
-                        </span>
-                    @endif
+                    <span>
+                        <a href="#" class="like" id="like-post-{{$post->id}}">
+                            <i class="far fa-heart love"></i>
+                        </a>
+                    </span>
                 </div>
                 <div class="edit-delete test">
                     <a href="#" class="map-info" data-postid="{{$post->id}}" title="Modifier">Où</a>

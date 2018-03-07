@@ -1,13 +1,12 @@
 $('.like').on('click', function(event){
 
+    var that = this.childNodes[1];
     event.preventDefault();
 
     var currentAttrId = this.getAttribute('id');
     var currentPostId = currentAttrId.slice(10)
 
     var urlLike = '/like/'+currentPostId;
-
-    console.log(urlLike);
 
     $.ajax({
         type: 'POST',
@@ -17,9 +16,9 @@ $('.like').on('click', function(event){
     })
         .done(function(msg) {
             if (msg.like === 1) {
-                this.removeClass("").addClass("");
+                $(that).removeClass('far').addClass('fas');
             } else if(msg.like === 0){
-                this.removeClass("").addClass("");
+                $(that).removeClass('fas').addClass('far');
             }
         })
         .fail(function () {
