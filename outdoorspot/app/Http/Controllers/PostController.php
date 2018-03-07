@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use App\Post;
-use Illuminate\Http\Request;
+
+use App\Http\Requests\UserRequest;
 
 class PostController extends Controller
 {
@@ -14,13 +15,12 @@ class PostController extends Controller
    }
 
 
-    public function postCreatePost(Request $request)
+    public function postCreatePost(UserRequest $request)
     {
-        $this->validate($request, [
-           'body' => 'required|max:1000'
-        ]);
+
         $post = new Post();
         $post->description = $request['body'];
+        $post->post_title = $request['title'];
         $post->user_id = 1;
         $message ='error with your post';
 //      $request->user()->posts()->save($post);
@@ -39,6 +39,21 @@ class PostController extends Controller
        $post = Post::find($post_id)->first();
        $post->delete();
        return redirect()->route('home')->with(['message'=>'successfully deleted']);
+    }
+
+    public function postEditPost (UserRequest $request)
+
+
+    {
+
+        $post = Post::find($request['postID'])->first();
+        $post->description = $request['body'];
+        $post->post_title = $request['title'];
+        $post->update();
+        return response('',200);
+
+
+
     }
 
 };
