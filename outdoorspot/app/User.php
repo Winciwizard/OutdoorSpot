@@ -12,7 +12,7 @@ class User extends Model implements Authenticatable
     /**
      * @return HasMany
      */
-    public function posts(): HasMany
+    public function posts()
     {
         return $this->hasMany('App\Post');
     }
@@ -20,7 +20,7 @@ class User extends Model implements Authenticatable
     /**
      * @return HasMany
      */
-    public function comments(): HasMany
+    public function comments()
     {
         return $this->hasMany('App\Post');
     }
@@ -28,7 +28,7 @@ class User extends Model implements Authenticatable
     /**
      * @return HasMany
      */
-    public function likes(): HasMany
+    public function likes()
     {
         return $this->hasMany('App\Like');
     }

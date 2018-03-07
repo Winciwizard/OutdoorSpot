@@ -24,5 +24,6 @@
         </script>
         <script src="{{asset('js/post.js')}}"></script>
         <script src="{{asset('js/like.js')}}"></script>
+        <script src="{{asset('js/comment.js')}}"></script>
     </body>
 </html>

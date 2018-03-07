@@ -13,29 +13,42 @@
                 <img src="{{asset('storage/'.$post->file)}}" class="spot-img"/>
                 <div class="under-picture test">
                     <span class="info">
-                        Posted by invited on {{$post->getAttribute('created_at')->diffForHumans()}}
+                        <img class='nano-image' src="{{asset('storage/'.$post->user['user_image'])}}"/>
+                        {{strtoupper($post->user['pseudo'])}} on {{$post->getAttribute('created_at')->diffForHumans()}}
                     </span>
-                </div>
-                @foreach($post->likes as $like)
-                    @if($like)
-                    <span class="like">
-                        <a href="#" id="{{$post->id}}">
-                            {{ \App\Like::getLike($like['like']) }}
-                        </a>
-                    </span>
-                    @endif
-                @endforeach
 
+                    @if(isset($like))
+                        <span>
+                            <a href="#" class="like" id="like-post-{{$like->id}}">
+                                <i class="fas fa-heart love"></i>
+                            </a>
+                        </span>
+                    @else
+                        <span>
+                            <a href="#" class="like" id="like-post-{{$post->id}}">
+                                <i class="far fa-heart love"></i>
+                            </a>
+                        </span>
+                    @endif
+                </div>
                 <div class="edit-delete test">
-                    <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">Modifier</a>
                     <a href="#" class="map-info" data-postid="{{$post->id}}" title="Modifier">Où</a>
+                    @if(Auth::user() == $post->user)
+                    <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">Modifier</a>
                     <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">Supprimer</a>
+                    @endif
                 </div>
                 <h3>{{$post->description}}</h3>
-
                 @foreach($post->comments as $comment)
-                <article data-postid="{{$comment->id}}" class="test">
-                    <span>{{$comment->comment}}</span><small>{{$comment->created_at->diffForHumans()}}</small>
+                <article data-postid="{{$comment->id}}" id="comment{{$comment->id}}" class="test block-commentaire">
+                    <span>
+                        {{$comment->comment}}
+                        <small>{{strtoupper($comment->user['pseudo'])}}-{{$comment->created_at->diffForHumans()}}</small>
+                    </span>
+                    @if(Auth::user() == $comment->user)
+                        <a href="#" id="{{$comment->id}}" class="commentaire">X</a>
+                    @endif
+
                 </article>
                 @endforeach
                 <form action="{{route('comment.create', ['post' => $post->id])}}" method="post" class="test">

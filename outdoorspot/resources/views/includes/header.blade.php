@@ -17,18 +17,20 @@
                 </a>
             </li>
             <li class="menu_icon">
-                <a href="#" class="menu_lien">
+                <a href="{{route('parameter')}}" class="menu_lien" >
                     <i class="fa fa-cog" aria-hidden="true"></i>
                 </a>
             </li>
             <li class="menu_icon">
                 <a href="{{route('logout')}}" class="menu_lien">
-                    <i class="fa sign-out-alt" aria-hidden="true"></i>
+                    <i class="fas fa-sign-out-alt" aria-hidden="true"></i>
                 </a>
             </li>
         </ul>
     </div>
 </nav>
+
+
 <div class="modal fade" id="postSpot" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel">
     <div class="modal-dialog" role="document">
         <div class="modal-content">

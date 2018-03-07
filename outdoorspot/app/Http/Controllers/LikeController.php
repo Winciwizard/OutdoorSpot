@@ -4,9 +4,9 @@ namespace App\Http\Controllers;
 
 use App\Like;
 use App\Post;
+use http\Env\Request;
 use Illuminate\Http\JsonResponse;
-use Illuminate\Http\Request;
-use Illuminate\Support\Facades\DB;
+use Illuminate\Support\Facades\Auth;
 
 /**
  * Class LikeController
@@ -16,29 +16,38 @@ use Illuminate\Support\Facades\DB;
  */
 class LikeController extends Controller
 {
+
     /**
      * Function of like change
-     *
-     * @param Request $request
      * @param Post $post
      * @return JsonResponse
      */
-    public function postLike(Request $request, Post $post): JsonResponse
+    public function postLike(Post $post)
     {
-        //TODO: Gérer l'utilisateur
-        $this->Likes = DB::table('likes');
-        $like = $this->Likes->where('post_id',$request['id'])->get();
+        //TODO: Gerer le like pour user::Auth et les autres
+        $like = Like::where('user_id', '=', Auth::id())->where('post_id','=', $post->id)->first();
 
+        if(!isset($like))
+        {
 
-        if($like[0]->like === Like::UNLIKE){
-
-            $post->likes()->update(['like' => Like::LIKE]);
-            return response()->json(['newlike' => Like::getLike(Like::LIKE)], 200);
+            $like = new Like();
+            $like->setAttribute('like',Like::LIKE );
+            $like->setAttribute('user_id',Auth::id());
+            $post->likes()->save($like);
+            return response()->json($like, 200);
         }
-        elseif ($like[0]->like === Like::LIKE){
 
-            $post->likes()->update(['like' => Like::UNLIKE]);
-            return response()->json(['newlike' => Like::getLike(Like::UNLIKE)], 200);
+
+        if($like->like === Like::UNLIKE){
+
+            $like->setAttribute('like', Like::LIKE);
         }
+        elseif ($like->like === Like::LIKE){
+
+            $like->setAttribute('like', Like::UNLIKE);
+        }
+
+        $like->update();
+        return response()->json($like,200);
     }
 }

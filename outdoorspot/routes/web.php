@@ -27,42 +27,65 @@ Route::post('/user/connect',[
     'as' => 'user.connect'
 ]);
 
-Route::get('/post/dashboard', [
-    'uses' => 'PostController@getDashboard',
-    'as' => 'dashboard'
-])->middleware('auth');
+Route::group(['middleware' => 'auth'], function()
+{
+    Route::get('user/parameter',[
+        'uses' => 'UserController@getParameter',
+        'as' => 'parameter'
+    ]);
 
-Route::post('/post/create', [
-   'uses' => 'PostController@postCreatePost',
-   'as' => 'post.create'
-]);
+    Route::post('/user/update',[
+        'uses' => 'UserController@postUserUpdate',
+        'as' => 'user.update'
+    ]);
 
-Route::get('/post/delete/{post}', [
-   'uses' => 'PostController@getDeletePost',
-    'as' => 'post.delete'
-]);
+    Route::get('/', [
+        'uses' => 'PostController@getDashboard',
+        'as' => 'dashboard'
+    ]);
 
-Route::get('/post/{post}.json',[
-    'uses' => 'PostController@getPostJson',
-    'as' => 'post.getjson'
-]);
+    Route::get('/post/dashboard', [
+        'uses' => 'PostController@getDashboard',
+        'as' => 'dashboard'
+    ]);
 
-Route::post('/post/edit/{post}', [
-    'uses' => 'PostController@postEditPost',
-    'as' => 'post.edit'
-]);
+    Route::post('/post/create', [
+        'uses' => 'PostController@postCreatePost',
+        'as' => 'post.create'
+    ]);
 
-Route::post('/comment/create/{post}', [
-   'uses' => 'CommentController@postCreateComment',
-    'as' => 'comment.create'
-]);
+    Route::get('/post/delete/{post}', [
+        'uses' => 'PostController@getDeletePost',
+        'as' => 'post.delete'
+    ]);
 
-Route::post('/like/{post}', [
-    'uses' => 'LikeController@postLike',
-    'as' => 'like'
-]);
+    Route::get('/post/{post}.json',[
+        'uses' => 'PostController@getPostJson',
+        'as' => 'post.getjson'
+    ]);
 
-Route::get('/logout', [
-    'uses' => 'UserController@getLogout',
-    'as' => 'logout'
-]);
+    Route::post('/post/edit/{post}', [
+        'uses' => 'PostController@postEditPost',
+        'as' => 'post.edit'
+    ]);
+
+    Route::post('/comment/create/{post}', [
+        'uses' => 'CommentController@postCreateComment',
+        'as' => 'comment.create'
+    ]);
+
+    Route::get('/comment/delete/{comment}', [
+       'uses' => 'CommentController@getDeleteComment',
+       'as' => 'comment.delete'
+    ]);
+
+    Route::post('/like/{post}', [
+        'uses' => 'LikeController@postLike',
+        'as' => 'like'
+    ]);
+
+    Route::get('/logout', [
+        'uses' => 'UserController@getLogout',
+        'as' => 'logout'
+    ]);
+});

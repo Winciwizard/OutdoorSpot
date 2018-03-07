@@ -10,6 +10,7 @@ class Like extends Model
     const LIKE = 1;
     const UNLIKE = 0;
 
+
     /**
      * @return BelongsTo
      */
@@ -35,8 +36,8 @@ class Like extends Model
     public static function getLike(int $like): string
     {
         $likes = [
-            self::LIKE => "like",
-            self::UNLIKE => "unlike"
+            self::LIKE => "fas",
+            self::UNLIKE => "far"
         ];
 
         return $likes[$like];

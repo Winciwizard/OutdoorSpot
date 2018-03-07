@@ -7,6 +7,7 @@ use App\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
 use Illuminate\Http\Response;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\View\View;
@@ -23,11 +24,10 @@ class PostController extends Controller
      */
     public function getDashboard(): View
     {
-        $posts = Post::with('comments')->orderBy('created_at','desc')->get();
-        $likes = Post::with('likes')->get();
+        $posts = Post::with('comments')->with('likes')->orderBy('created_at','desc')->get();
         //TODO: récupérer le nombre total de like d'un post
 
-        return view('post/dashboard', ['posts' => $posts, 'likes' => $likes]);
+        return view('post/dashboard', ['posts' => $posts]);
     }
 
     /**
@@ -38,17 +38,15 @@ class PostController extends Controller
      */
     public function getPostJson(Post $post): array
     {
-        return $post->jsonSerialize();
+        return response()->json($post);
     }
 
     /**
      * @param Request $request
      * @return Response
      */
-    public function postCreatePost(Request $request): Response
+    public function postCreatePost(Request $request)
     {
-
-
         $this->validate($request, [
             'place' => 'required|max:100',
             'description' => 'required|max:255',
@@ -137,18 +135,12 @@ class PostController extends Controller
         $post->setAttribute('description', $request->input('description'));
         if($latitude != 0 && $longitude != 0){
             $post->setAttribute('latitude', $latitude);
-            $post->setAttribut('longitude', $longitude);
+            $post->setAttribute('longitude', $longitude);
         }
         $post->setAttribute('file', $cover);
-        $post->save();
+        $request->user()->posts()->save($post);
 
-
-        /** @var object $like */
-        $like = new Like();
-        $like->setAttribute('like', Like::UNLIKE);
-        $post->likes()->save($like);
-
-        return redirect()->back();
+        return redirect()->route('dashboard');
     }
 
     /**
@@ -162,6 +154,10 @@ class PostController extends Controller
             'description' => 'required|max:255'
         ]);
 
+        if (Auth::user() != $post->user){
+            return redirect()->back();
+        }
+
         $post->setAttribute('description', $request['description']);
         $post->update();
         return response()->json(['newDescription' => $post->getAttribute('description')], JsonResponse::HTTP_OK);
@@ -172,8 +168,12 @@ class PostController extends Controller
      * @return Response
      * @throws \Exception
      */
-    public function getDeletePost(Post $post): Response
+    public function getDeletePost(Post $post)
     {
+
+        if (Auth::user() != $post->user){
+            return redirect()->back();
+        }
         //TODO: Supprimer l'essemble des données, commentaires, likes et images inclus
         $post->delete();
         return redirect()->route('dashboard');

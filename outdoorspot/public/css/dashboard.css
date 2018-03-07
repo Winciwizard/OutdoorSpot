@@ -1,3 +1,35 @@
+.icon {
+    position: relative;
+}
+
+/*replace the content value with the
+corresponding value from the list below*/
+
+.icon:before {
+    content: "\f004";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    /*--adjust as necessary--*/
+    color: #000;
+    font-size: 18px;
+    padding-right: 0.5em;
+    position: absolute;
+    top: 10px;
+    left: 0;
+}
+
+.nano-image{
+    width: 20px;
+    border-radius: 10px;
+}
+
+.love
+{
+    color: red;
+}
+
 #map {
     height: 300px;
     width: 100%;
