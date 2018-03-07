@@ -1,7 +1,8 @@
 $('.like').on('click', function(event){
-
-    var that = this.childNodes[1];
     event.preventDefault();
+
+    var heart = this.childNodes[1];
+    var likeCount = this.parentElement.childNodes[1];
 
     var currentAttrId = this.getAttribute('id');
     var currentPostId = currentAttrId.slice(10)
@@ -16,9 +17,11 @@ $('.like').on('click', function(event){
     })
         .done(function(msg) {
             if (msg.like === 1) {
-                $(that).removeClass('far').addClass('fas');
+                $(heart).removeClass('far').addClass('fas');
+                $(likeCount).text(parseInt($(likeCount).text())+1);
             } else if(msg.like === 0){
-                $(that).removeClass('fas').addClass('far');
+                $(heart).removeClass('fas').addClass('far');
+                $(likeCount).text(parseInt($(likeCount).text())-1);
             }
         })
         .fail(function () {

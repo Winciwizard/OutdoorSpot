@@ -17,8 +17,13 @@
                         {{strtoupper($post->user['pseudo'])}} on {{$post->getAttribute('created_at')->diffForHumans()}}
                     </span>
                     <span>
+                        <span>{{count($post->likes->where('like','=','1'))}}</span>
                         <a href="#" class="like" id="like-post-{{$post->id}}">
-                            <i class="far fa-heart love"></i>
+                            @if($post->likes->where('user_id','=',Auth::id())->pluck('like')[0] === 1)
+                                <i class="fas fa-heart love"></i>
+                                @else
+                                <i class="far fa-heart love"></i>
+                                @endif
                         </a>
                     </span>
                 </div>
