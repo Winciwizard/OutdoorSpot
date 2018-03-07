@@ -1,8 +1,7 @@
 $('.commentaire').on('click', function(event){
-
     event.preventDefault();
 
-    var currentCommentId = event.target.getAttribute('id');
+    var currentCommentId = this.getAttribute('id');
     var currentCommentBlockId = '#comment'+currentCommentId
     var urlComment = '/comment/delete/'+currentCommentId;
 
@@ -11,8 +10,7 @@ $('.commentaire').on('click', function(event){
         url: urlComment,
         timeout : 3000
     })
-        .done(function(data) {
-            message = data['message'];
+        .done(function() {
             $(currentCommentBlockId).remove();
         })
         .fail(function () {

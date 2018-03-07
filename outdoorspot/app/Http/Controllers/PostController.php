@@ -25,7 +25,6 @@ class PostController extends Controller
     public function getDashboard(): View
     {
         $posts = Post::with('comments')->with('likes')->orderBy('created_at','desc')->get();
-        //TODO: récupérer le nombre total de like d'un post
 
         return view('post/dashboard', ['posts' => $posts]);
     }
@@ -36,7 +35,7 @@ class PostController extends Controller
      * @param Post $post
      * @return array
      */
-    public function getPostJson(Post $post): array
+    public function getPostJson(Post $post)
     {
         return response()->json($post);
     }
@@ -50,7 +49,7 @@ class PostController extends Controller
         $this->validate($request, [
             'place' => 'required|max:100',
             'description' => 'required|max:255',
-            //TODO: gérer la validate de l'image (php.ini max 8M) 'image' => 'required|image|max:400240'
+            'image' => 'required|mimes:jpg,jpeg'
         ]);
 
 
@@ -115,9 +114,23 @@ class PostController extends Controller
             $latitude = ((float) $arrayLatitude[0] + ((float) $arrayLatitude[1]/60)+((float) $arrayLatitude[2]/3600))*$refLatitude;
             $longitude = ((float) $arrayLongitude[0]+((float) $arrayLongitude[1]/60)+((float) $arrayLongitude[2]/3600))*$refLongitude;
 
+        } else {
+            $city = $request->place;
+            $country = $request->country;
+            $cityclean = str_replace(' ','+', $city);
+            $countryclean = str_replace(' ','+', $country);
+            $detailUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$cityclean.'+'.$countryclean.',+CA&key=AIzaSyDajw0StZIITHHTGRKqf_0UeXh7QsqKQ5U';
+
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $detailUrl);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+            $geoloc = json_decode(curl_exec($ch), true);
+
+            $latitude = $geoloc['results'][0]['geometry']['location']['lat'];
+            $longitude = $geoloc['results'][0]['geometry']['location']['lng'];
+
         }
 
-        //TODO: Gérer quand pas de coordonnées GPS
         //TODO: Resizer l'image
 
         /**

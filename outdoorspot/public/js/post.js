@@ -5,9 +5,11 @@ $('.edit').on('click', function(event) {
     event.preventDefault();
 
     var description;
-    currentPostId = event.target.getAttribute('data-postid');
-    currentPostElement = event.target.parentNode.parentElement.childNodes[9];
+    currentPostId = this.getAttribute('data-postid');
+    currentPostElement = this.parentNode.parentNode.parentElement.childNodes[9];
     var urlPost = '/post/'+currentPostId+'.json';
+
+    console.log(currentPostElement);
 
 
     $.ajax({
@@ -49,9 +51,6 @@ $('.map-info').on('click', function(event){
 
     currentPostId = event.target.getAttribute('data-postid');
     var urlInfoMap = '/post/'+currentPostId+'.json';
-
-    console.log(urlInfoMap);
-
     $.ajax({
         type: 'GET',
         url: urlInfoMap,

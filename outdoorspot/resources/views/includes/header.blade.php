@@ -1,4 +1,4 @@
-<nav class="row">
+<nav class="row menu">
     <div class="col-8" id="logo_title">
         <a href="#" id="retour-flux">
             <i class="fab fa-hooli fa-2x" aria-hidden="true"></i>
@@ -45,6 +45,10 @@
                     <div class="form-group">
                         <label for="place">Lieu du spot</label>
                         <input type="text" class="form-control" name="place" id="place" placeholder="Où est votre spot">
+                    </div>
+                    <div class="form-group">
+                        <label for="country">Pays</label>
+                        <input type="text" class="form-control" name="country" id="country" placeholder="Pays de votre spot">
                     </div>
                     <div class="form-group">
                         <label for="description">Description</label>

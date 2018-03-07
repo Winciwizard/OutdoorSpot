@@ -2,24 +2,24 @@
 
 @section('content')
 <div id="content">
-    <h1>DERNIERS SPOTS</h1>
     <div class="row">
-        <div class="col-md-12">
+        <div class="col-sm-8 offset-sm-2 all">
 
         @foreach($posts as $post)
 
             <article class="post" data-postid="{{$post->getAttribute('id')}}">
-                <h2>{{$post->place}}</h2>
+
+                <span class="account">
+                    <img class='nano-image' src="{{asset('storage/'.$post->user['user_image'])}}"/>
+                    <b>{{strtolower($post->user['pseudo'])}}</b>
+                </span>
                 <img src="{{asset('storage/'.$post->file)}}" class="spot-img"/>
                 <div class="under-picture test">
-                    <span class="info">
-                        <img class='nano-image' src="{{asset('storage/'.$post->user['user_image'])}}"/>
-                        {{strtoupper($post->user['pseudo'])}} on {{$post->getAttribute('created_at')->diffForHumans()}}
-                    </span>
+                    <b>{{$post->place}}</b>
                     <span>
-                        <span>{{count($post->likes->where('like','=','1'))}}</span>
+                        <span>{{count($post->likes->where('like','=','1'))}}</span> J'aime
                         <a href="#" class="like" id="like-post-{{$post->id}}">
-                            @if($post->likes->where('user_id','=',Auth::id())->pluck('like')[0] === 1)
+                            @if((isset($post->likes->where('user_id','=',Auth::id())->pluck('like')[0])) && ($post->likes->where('user_id','=',Auth::id())->pluck('like')[0] === 1))
                                 <i class="fas fa-heart love"></i>
                                 @else
                                 <i class="far fa-heart love"></i>
@@ -28,30 +28,34 @@
                     </span>
                 </div>
                 <div class="edit-delete test">
-                    <a href="#" class="map-info" data-postid="{{$post->id}}" title="Modifier">Où</a>
+                    <span><a href="#" class="map-info" data-postid="{{$post->id}}" title="Localiser"><i class="fas fa-map-marker fa-1x"></i> Localiser</a></span>
                     @if(Auth::user() == $post->user)
-                    <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier">Modifier</a>
-                    <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer">Supprimer</a>
+                    <span>
+                        <a href="#" class="edit" data-postid="{{$post->id}}" title="Modifier"><i class="fas fa-edit"></i></a>
+                        <a href="{{route('post.delete', ['post' => $post->id])}}" class="delete" title="Supprimer"><i class="fas fa-times"></i></a>
+                    </span>
                     @endif
                 </div>
-                <h3>{{$post->description}}</h3>
+                <div class="description">{{$post->description}}</div>
+                <div class="commentaires">
                 @foreach($post->comments as $comment)
                 <article data-postid="{{$comment->id}}" id="comment{{$comment->id}}" class="test block-commentaire">
                     <span>
-                        {{$comment->comment}}
-                        <small>{{strtoupper($comment->user['pseudo'])}}-{{$comment->created_at->diffForHumans()}}</small>
+                        <b>{{strtolower($comment->user['pseudo'])}}</b> {{$comment->comment}}
                     </span>
                     @if(Auth::user() == $comment->user)
-                        <a href="#" id="{{$comment->id}}" class="commentaire">X</a>
+                        <a href="#" id="{{$comment->id}}" class="commentaire"><i class="fas fa-times"></i></a>
                     @endif
 
                 </article>
                 @endforeach
-                <form action="{{route('comment.create', ['post' => $post->id])}}" method="post" class="test">
-                    <input type="text" class="form-control" name="comment" id="comment" placeholder="Ajouter un commentaire">
+                    <i class="posted">{{$post->getAttribute('created_at')->diffForHumans()}}</i>
+                <form action="{{route('comment.create', ['post' => $post->id])}}" method="post" class="test com-form">
+                    <input type="text" class="form-control input-com" name="comment" id="comment" placeholder="Ajouter un commentaire">
                     <button type="submit" class="btn btn-light"><i class="far fa-comment"></i></button>
                     {{csrf_field()}}
                 </form>
+                </div>
             </article>
         @endforeach
         </div>
@@ -67,6 +71,7 @@
                         </button>
                     </div>
                     <form>
+                        @csrf
                         <div class="modal-body">
                             <div class="form-group">
                                 <label for="post-body">Modifier la description</label>

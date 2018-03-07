@@ -1,28 +1,39 @@
-.icon {
-    position: relative;
+.menu{
+    position: fixed;
+    width: 100%;
+    margin: 0px;
+    z-index: 1;
+}
+.account{
+    margin-left: 10px;
 }
 
-/*replace the content value with the
-corresponding value from the list below*/
+.under-picture{
+    margin-left: 10px;
+    margin-right: 10px;
+}
 
-.icon:before {
-    content: "\f004";
-    font-family: FontAwesome;
-    font-style: normal;
-    font-weight: normal;
-    text-decoration: inherit;
-    /*--adjust as necessary--*/
-    color: #000;
-    font-size: 18px;
-    padding-right: 0.5em;
-    position: absolute;
-    top: 10px;
-    left: 0;
+.edit-delete{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.edit, .edit:hover, .delete, .delete:hover{
+    color: lightgray;
+}
+
+.post{
+    margin-top: 90px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    background-color: white;
+    padding: 10px 0px 15px 0px;
 }
 
 .nano-image{
-    width: 20px;
-    border-radius: 10px;
+
+    width: 30px;
+    border-radius: 15px;
 }
 
 .love
@@ -30,9 +41,24 @@ corresponding value from the list below*/
     color: red;
 }
 
+.commentaire, .commentaire:hover{
+    color: lightgray;
+}
+
+.commentaires{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
 #map {
     height: 300px;
     width: 100%;
+}
+
+.map-info, .map-info:hover{
+    font-size: small;
+    color: green;
+    text-decoration: none;
 }
 
 .test{
@@ -41,19 +67,38 @@ corresponding value from the list below*/
 
 }
 
+.all{
+    margin-bottom: 30px;
+}
+
 .edit-delete{
     size: 10px;
     font-weight: bold;
 }
 
 .spot-img{
+    margin-top: 5px;
     width: 100%;
 }
 
-#index-page
-{
-    background: url(../images/bg-index.jpg);
-    background-size: cover;
+
+.description{
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.posted{
+    font-weight: 100;
+    color:darkgrey;
+}
+
+.com-form{
+    margin-top: 8px;
+}
+
+.input-com{
+    background-color: #f9f9f9;
 }
 
 #font-index
