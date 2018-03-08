@@ -1,13 +1,13 @@
 <nav class="row menu">
     <div class="col-8" id="logo_title">
-        <a href="#" id="retour-flux">
+        <a href="/" id="retour-flux">
             <i class="fab fa-hooli fa-2x" aria-hidden="true"></i>
         </a>
     </div>
     <div class="col-4">
         <ul id="menu_connect">
             <li>
-                <button type="button" class="btn" data-toggle="modal" data-target="#postSpot">
+                <button type="button" class="btn" id="share" data-toggle="modal" data-target="#postSpot">
                     <i class="fa fa-camera-retro" aria-hidden="true" id="menu_share_icon"></i>Partager
                 </button>
             </li>

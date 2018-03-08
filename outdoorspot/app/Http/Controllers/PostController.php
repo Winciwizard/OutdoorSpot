@@ -201,8 +201,16 @@ class PostController extends Controller
         if (Auth::user() != $post->user){
             return redirect()->back();
         }
-        //TODO: Supprimer l'essemble des données, commentaires, likes et images inclus
+
+        $postId = $post->id;
+        $file = $post->file;
+
+        Storage::disk('local')->delete('public/'.$file);
+
+        $post->comments()->where('post_id', '=', $postId)->delete();
+        $post->likes()->where('post_id', '=', $postId)->delete();
         $post->delete();
+
         return redirect()->route('dashboard');
     }
 }
