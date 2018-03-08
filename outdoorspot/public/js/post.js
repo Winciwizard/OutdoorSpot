@@ -1,16 +1,18 @@
-var currentPostId = null;
-var currentPostElement = null;
+var currentPostId;
+var currentPostElement;
 
-$('.edit').on('click', function(event) {
+/**Ouverture du modal et recupération du commentaire en cours*/
+
+$('.edit').on('click', function(event)
+{
+    var description;
+    var urlPost;
+
     event.preventDefault();
 
-    var description;
     currentPostId = this.getAttribute('data-postid');
     currentPostElement = this.parentNode.parentNode.parentElement.childNodes[9];
-    var urlPost = '/post/'+currentPostId+'.json';
-
-    console.log(currentPostElement);
-
+    urlPost = '/post/' + currentPostId + '.json';
 
     $.ajax({
         type: 'GET',
@@ -28,6 +30,7 @@ $('.edit').on('click', function(event) {
     $('#edit-modal').modal();
 });
 
+/**Enregistrement du nouveau commentaire et mise a jour de la view*/
 $('#modal-save').on('click', function () {
 
 
@@ -45,6 +48,7 @@ $('#modal-save').on('click', function () {
         })
 });
 
+/**Affichage de la Map avec les coordonnées GPS du lieu*/
 $('.map-info').on('click', function(event){
 
     event.preventDefault();
@@ -54,7 +58,7 @@ $('.map-info').on('click', function(event){
     $.ajax({
         type: 'GET',
         url: urlInfoMap,
-        timeout: 3000,
+        timeout: 3000
     })
         .done(function(data) {
             var lat = data['latitude'];

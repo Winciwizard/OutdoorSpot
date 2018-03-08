@@ -115,18 +115,32 @@ class PostController extends Controller
             $longitude = ((float) $arrayLongitude[0]+((float) $arrayLongitude[1]/60)+((float) $arrayLongitude[2]/3600))*$refLongitude;
 
         } else {
+            /**
+             *Si pas de GPS dans l'exif, recupération du GPS via API Google GEOCODE avec la ville et le pays
+             */
+            /** @var string $city */
             $city = $request->place;
+            /** @var string $country */
             $country = $request->country;
+
+            /** @var string $cityclean */
             $cityclean = str_replace(' ','+', $city);
+            /** @var string $countryclean */
             $countryclean = str_replace(' ','+', $country);
+            /** @var string $detailUrl */
             $detailUrl = 'https://maps.googleapis.com/maps/api/geocode/json?address='.$cityclean.'+'.$countryclean.',+CA&key=AIzaSyDajw0StZIITHHTGRKqf_0UeXh7QsqKQ5U';
 
+            /** Appel de l'API */
             $ch = curl_init();
             curl_setopt($ch, CURLOPT_URL, $detailUrl);
             curl_setopt($ch, CURLOPT_RETURNTRANSFER, 1);
+
+            /** @var array $geoloc */
             $geoloc = json_decode(curl_exec($ch), true);
 
+            /** @var float $latitude */
             $latitude = $geoloc['results'][0]['geometry']['location']['lat'];
+            /** @var float $longitude */
             $longitude = $geoloc['results'][0]['geometry']['location']['lng'];
 
         }

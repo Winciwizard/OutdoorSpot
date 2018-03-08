@@ -1,8 +1,10 @@
+/* Marge superieur aux deux blocks*/
 #login
 {
     margin-top: 20%;
 }
 
+/* Mise en design des deux blocks */
 #inscription, #connexion
 {
     padding: 20px;
@@ -13,28 +15,33 @@
     box-shadow: 0 0 2em dimgrey;
 }
 
+/* Centrage des titre */
 #title
 {
     text-align: center;
 }
 
+/* Design des mini-titre */
+.title
+{
+    font-weight: bolder;
+    margin-bottom: 10px;
+}
+
+/* Mise en gras des titres*/
 h2, h5
 {
     font-weight: bold;
 }
 
+/* H5 en gris */
 h5
 {
     color: darkgrey;
 }
 
+/* CSS des bouton*/
 button
 {
     margin-top: 10px;
-}
-
-.title
-{
-    font-weight: bolder;
-    margin-bottom: 10px;
 }

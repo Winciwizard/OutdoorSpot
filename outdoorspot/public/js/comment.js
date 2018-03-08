@@ -1,9 +1,15 @@
-$('.commentaire').on('click', function(event){
+/**Suppression d'un commentaire*/
+
+$('.commentaire').on('click', function(event)
+{
+    var urlComment;
+    var currentCommentBlockId;
+    var currentCommentId;
     event.preventDefault();
 
-    var currentCommentId = this.getAttribute('id');
-    var currentCommentBlockId = '#comment'+currentCommentId
-    var urlComment = '/comment/delete/'+currentCommentId;
+    currentCommentId = this.getAttribute('id');
+    currentCommentBlockId = '#comment' + currentCommentId;
+    urlComment = '/comment/delete/' + currentCommentId;
 
     $.ajax({
         type: 'GET',

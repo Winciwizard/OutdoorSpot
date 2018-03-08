@@ -30,12 +30,12 @@
                 <small id="imageHelp" class="form-text text-muted"><i class="fas fa-exclamation-triangle"></i>Uniquement des images en .jpg</small>
             </div>
             <div class="form-group">
-                <label for="old-pass">Ancien mot de passe</label>
-                <input type="password" class="form-control" name="old-pass" id="old-pass" placeholder="Tapez votre ancien mot de passe">
+                <label for="oldpass">Ancien mot de passe</label>
+                <input type="password" class="form-control" name="oldpass" id="oldpass" placeholder="Tapez votre ancien mot de passe">
             </div>
             <div class="form-group">
-                <label for="new-pass">Nouveau mot de passe</label>
-                <input type="password" class="form-control" name="new-pass" id="new-pass" placeholder="Tapz votre nouveau mot de passe">
+                <label for="newpass">Nouveau mot de passe</label>
+                <input type="password" class="form-control" name="newpass" id="newpass" placeholder="Tapz votre nouveau mot de passe">
             </div>
             <div class="form-group">
                 <label for="password">Nouveau mot de passe</label>

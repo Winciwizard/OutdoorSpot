@@ -1,13 +1,20 @@
-$('.like').on('click', function(event){
+/**Gestion des likes*/
+
+$('.like').on('click', function(event)
+{
+    var urlLike;
+    var currentPostId;
+    var currentAttrId;
+    var likeCount;
+    var heart;
+
     event.preventDefault();
 
-    var heart = this.childNodes[1];
-    var likeCount = this.parentElement.childNodes[1];
-
-    var currentAttrId = this.getAttribute('id');
-    var currentPostId = currentAttrId.slice(10)
-
-    var urlLike = '/like/'+currentPostId;
+    heart = this.childNodes[1];
+    likeCount = this.parentElement.childNodes[1];
+    currentAttrId = this.getAttribute('id');
+    currentPostId = currentAttrId.slice(10);
+    urlLike = '/like/' + currentPostId;
 
     $.ajax({
         type: 'POST',

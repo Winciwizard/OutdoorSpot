@@ -22,11 +22,12 @@ class LikeController extends Controller
      * @param Post $post
      * @return JsonResponse
      */
-    public function postLike(Post $post)
+    public function postLike(Post $post) :JsonResponse
     {
-        //TODO: Gerer le like pour user::Auth et les autres
+        /** @var Like $like */
         $like = Like::where('user_id', '=', Auth::id())->where('post_id','=', $post->id)->first();
 
+        /** Instance a like when it is unexciting */
         if(!isset($like))
         {
 
@@ -37,11 +38,12 @@ class LikeController extends Controller
             return response()->json($like, 200);
         }
 
-
+        /** Change dislike to like */
         if($like->like === Like::UNLIKE){
 
             $like->setAttribute('like', Like::LIKE);
         }
+        /** Change like to dislike */
         elseif ($like->like === Like::LIKE){
 
             $like->setAttribute('like', Like::UNLIKE);
