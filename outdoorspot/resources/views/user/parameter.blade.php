@@ -1,7 +1,8 @@
 @extends('master')
 
 @section('content')
-    <div class="col-md-8 offset-md-2">
+<div class="row">
+    <div class="col-md-8 offset-md-2 marge-haute">
         <h2>Parametres du compte</h2>
         <form action="{{route('user.update')}}" method="post"  enctype="multipart/form-data">
             <div class="form-group">
@@ -47,4 +48,5 @@
             {{csrf_field()}}
         </form>
     </div>
+</div>
 @endsection
