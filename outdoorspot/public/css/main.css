@@ -1,18 +1,19 @@
-.new-post {
-    padding: 16px 0;
-    border-bottom: 1px solid black;
-}
+
 
 .success {
     color: green;
-    background: lightgreen;
-    border: 2px solid darkgreen;
+
+    margin-top: 50px;
+    margin-left: 500px;
+
+    opacity: 10;
 }
 
 .error {
-     color: palevioletred;
-     background: firebrick;
-     border:2px solid lightcoral;
+     color: indianred;
+    margin-top: 100px;
+    margin-left: 400px;
+
 }
 
 .error ul {
@@ -23,3 +24,23 @@
 
     text-align: center;
 }
+
+.spot-img {
+    width: 600px;
+    height: 500px;
+}
+
+.modal-body {
+
+    margin-left: 200px;
+
+}
+
+.modal{
+    width:700px;
+}
+
+#form-inscription {
+    margin-top: 100px;
+}
+

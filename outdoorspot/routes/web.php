@@ -11,10 +11,11 @@
 |
 */
 Route::group(['middleware' => ['web']], function () {
-    Route::get('/' , [
+
+    Route::get('/home' , [
         'uses' => 'PostController@getHome',
         'as' => 'home'
-    ]);
+    ])->middleware('auth');
 
     Route::post('/post/create', [
         'uses' => 'PostController@postCreatePost',
@@ -31,6 +32,23 @@ Route::group(['middleware' => ['web']], function () {
         'as' => 'edit'
     ]);
 
+    Route::get('/inscription' , [
+        'uses' => 'UserController@getInscription',
+        'as' => 'inscription'
+    ]);
+
+    Route::post('/signup', [
+        'uses' => 'UserController@postSignUp',
+        'as' => 'signup'
+
+    ]);
+
+
+    Route::post('/signin', [
+        'uses' => 'UserController@postSignIn',
+        'as' => 'signin'
+
+    ]);
 
 
 

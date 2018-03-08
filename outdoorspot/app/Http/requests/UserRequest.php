@@ -16,7 +16,10 @@ class UserRequest extends FormRequest
     {
 
         return [
-            'body'  => 'bail|between:5,50|required'
+
+            'email'  => 'email|unique:users',
+            'name' => 'required|max:70',
+            'password'=> 'required|min:4'
 
         ];
     }

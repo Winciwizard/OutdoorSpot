@@ -16,9 +16,9 @@
 </head>
 <body>
 
-    @include('include.header')
 
-    <div class="container">
+
+    <div class="container" >
         @yield("content")
     </div>
     <script
@@ -29,6 +29,8 @@
             integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl"
             crossorigin="anonymous"></script>
     <script src="{{asset('js/modificationsJS.js') }}"></script>
+
+
 
 </body>
 </html>
