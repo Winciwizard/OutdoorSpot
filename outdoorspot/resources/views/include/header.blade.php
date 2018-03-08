@@ -12,7 +12,7 @@
             <ul class="navbar-nav">
 
                 <li class="{{ Request::is('/') ? 'active' : '' }}">
-                    <a class="navbar-brand " href="{{url('/')}}">
+                    <a class="navbar-brand " href="{{url('home')}}">
                         <i class="fas fa-leaf" style="font-size:20px; color:forestgreen"></i>
                         OutDoorSpot
                     </a>

@@ -41,6 +41,23 @@
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
         </div>
+
+    <div class="col-6">
+        <h1> Sign In</h1>
+        <form action="{{route('signin')}}" method="post">
+            {{ csrf_field() }}
+            <div class="form-group">
+                <label for="email">Email</label>
+                <input class="form-control {{$errors->has('email') ? 'is-invalid': ''}}" type="text" name="email" id="email" value="{{ Request::old('email')}}">
+            </div>
+            <div class="form-group">
+                <label for="password">Password</label>
+                <input class="form-control {{$errors->has('password') ? 'is-invalid': ''}}" type="password" name="password" id="password">
+            </div>
+            <button type="submit" class="btn btn-primary">Submit</button>
+
+        </form>
+    </div>
     </div>
 
 
