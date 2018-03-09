@@ -2,48 +2,32 @@
 
 namespace App\Http\Controllers;
 
+use App\Http\Resources\PostResource;
 use App\Post;
 use Illuminate\Http\JsonResponse;
 use Illuminate\Http\Request;
-use Illuminate\Http\Response;
-use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Storage;
-use Illuminate\View\View;
 
-class PostController extends Controller
+class PostApiController extends Controller
 {
-
     /**
-     * Return all comment from the current post
+     * Display a listing of the resource.
      *
-     * Return if the current auth auth like or unlike the current post
-     *
-     * @return View
+     * @return \Illuminate\Http\Resources\Json\AnonymousResourceCollection
      */
-    public function getDashboard(): View
+    public function index()
     {
-        $posts = Post::with('comments')->with('likes')->orderBy('created_at','desc')->get();
-
-        return view('post/dashboard', ['posts' => $posts]);
+        return PostResource::collection(Post::all());
     }
 
     /**
-     * return a Json of the post
+     * Store a newly created resource in storage.
      *
-     * @param Post $post
-     * @return array
+     * @param  \Illuminate\Http\Request  $request
+     * @return \Illuminate\Http\Response
      */
-    public function getPostJson(Post $post)
-    {
-        return response()->json($post);
-    }
-
-    /**
-     * @param Request $request
-     * @return Response
-     */
-    public function postCreatePost(Request $request)
+    public function store(Request $request)
     {
         $this->validate($request, [
             'place' => 'required|max:100',
@@ -57,7 +41,7 @@ class PostController extends Controller
         $fileError = $_FILES['image']['error'];
 
         if($fileError != 0){
-            return redirect()->back();
+            return response()->json(['error' => 'Erreur fichier'], JsonResponse::HTTP_BAD_REQUEST);
         }
 
         /**
@@ -73,7 +57,7 @@ class PostController extends Controller
         $exifArray = $im->getImageProperties();
 
         /**Initialisation des variable $latitude et $longitude
-        * @var float $latitude */
+         * @var float $latitude */
         $latitude = 0;
         /** @var float $longitude */
         $longitude = 0;
@@ -144,8 +128,6 @@ class PostController extends Controller
 
         }
 
-        //TODO: Resizer l'image
-
         /**
          * Create à new file name before storage
          * If file prensent, store this in folder 'public/nameoffile.jpg'
@@ -154,52 +136,60 @@ class PostController extends Controller
         if($file) {
             Storage::disk('local')->put('public/'.$cover, File::get($file));
         }
-
-        /** @var object $post */
         $post = new Post();
-        $post->setAttribute('place', $request->input('place')) ;
-        $post->setAttribute('description', $request->input('description'));
+
+        $post->setAttribute('place', $request->place);
+        $post->setAttribute('description',$request->description);
         if($latitude != 0 && $longitude != 0){
             $post->setAttribute('latitude', $latitude);
             $post->setAttribute('longitude', $longitude);
         }
-        $post->setAttribute('file', $cover);
-        $request->user()->posts()->save($post);
+        $post->setAttribute('user_id',$request->user_id);
+        $post->setAttribute('file',$cover);
+        $post->save();
 
-        return redirect()->route('dashboard');
+        return response()->json($post, JsonResponse::HTTP_OK);
     }
 
     /**
-     * @param Post $post
-     * @param Request $request
-     * @return JsonResponse
+     * Display the specified resource.
+     *
+     * @param  int  $id
+     * @return PostResource
      */
-    public function postEditPost(Post $post, Request $request):JsonResponse
+    public function show($id)
+    {
+        return new PostResource(Post::find($id));
+    }
+
+    /**
+     * Update the specified resource in storage.
+     *
+     * @param  \Illuminate\Http\Request  $request
+     * @param  Post  $post
+     * @return \Illuminate\Http\Response
+     */
+    public function update(Request $request, Post $post)
     {
         $this->validate($request, [
             'description' => 'required|max:255'
         ]);
 
-        if (Auth::user() != $post->user){
-            return redirect()->back();
-        }
-
         $post->setAttribute('description', $request['description']);
         $post->update();
-        return response()->json(['newDescription' => $post->getAttribute('description')], JsonResponse::HTTP_OK);
+
+        return response()->json($post, JsonResponse::HTTP_OK);
     }
 
     /**
+     * Remove the specified resource from storage.
+     *
      * @param Post $post
-     * @return Response
+     * @return \Illuminate\Http\Response
      * @throws \Exception
      */
-    public function getDeletePost(Post $post)
+    public function destroy(Post $post)
     {
-        if (Auth::user() != $post->user){
-            return redirect()->back();
-        }
-
         $postId = $post->id;
         $file = $post->file;
 
@@ -209,6 +199,6 @@ class PostController extends Controller
         $post->likes()->where('post_id', '=', $postId)->delete();
         $post->delete();
 
-        return redirect()->route('dashboard');
+        return response()->json(['message' => 'Post supprimé'], JsonResponse::HTTP_OK);
     }
 }

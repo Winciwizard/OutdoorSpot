@@ -1,5 +1,6 @@
 <?php
-
+use App\Http\Resources\UserResource;
+use App\User;
 /*
 |--------------------------------------------------------------------------
 | Web Routes
@@ -11,21 +12,25 @@
 |
 */
 
-Route::get('/login',[
-    function (){
-    return view('auth/login');
-},'as' => 'login'
-]);
+Route::group(['middleware' => 'guest'], function() {
 
-Route::post('/user/create',[
-    'uses' => 'UserController@postUserCreate',
-    'as' => 'user.create'
-]);
+    Route::get('/login', [
+        function () {
+            return view('auth/login');
+        }, 'as' => 'login'
+    ]);
 
-Route::post('/user/connect',[
-    'uses' => 'UserController@postUserConnect',
-    'as' => 'user.connect'
-]);
+    Route::post('/user/create', [
+        'uses' => 'UserController@postUserCreate',
+        'as' => 'user.create'
+    ]);
+
+    Route::post('/user/connect', [
+        'uses' => 'UserController@postUserConnect',
+        'as' => 'user.connect'
+    ]);
+
+});
 
 Route::group(['middleware' => 'auth'], function()
 {
@@ -40,6 +45,11 @@ Route::group(['middleware' => 'auth'], function()
     ]);
 
     Route::get('/', [
+        'uses' => 'PostController@getDashboard',
+        'as' => 'dashboard'
+    ]);
+
+    Route::get('/home', [
         'uses' => 'PostController@getDashboard',
         'as' => 'dashboard'
     ]);
@@ -89,3 +99,4 @@ Route::group(['middleware' => 'auth'], function()
         'as' => 'logout'
     ]);
 });
+
