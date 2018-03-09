@@ -61,6 +61,12 @@ class UserController extends Controller
         return redirect()->back();
     }
 
+    public function getDisconnect ()
+    {
+        Auth::logout();
+        return redirect()->route('inscription');
+    }
+
 
 
 }

@@ -20,6 +20,8 @@
         </div>
     @endif
     <div class="row card card-body bg-light" id="form-inscription">
+
+
         <h1 >Page d'Inscription</h1>
         <br>
         <div class="col-6 ">
@@ -58,7 +60,9 @@
 
         </form>
     </div>
+
     </div>
+
 
 
 @endsection

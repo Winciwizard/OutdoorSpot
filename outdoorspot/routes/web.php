@@ -15,7 +15,7 @@ Route::group(['middleware' => ['web']], function () {
     Route::get('/home' , [
         'uses' => 'PostController@getHome',
         'as' => 'home'
-    ])->middleware('auth');
+    ]);
 
     Route::post('/post/create', [
         'uses' => 'PostController@postCreatePost',
@@ -47,6 +47,11 @@ Route::group(['middleware' => ['web']], function () {
     Route::post('/signin', [
         'uses' => 'UserController@postSignIn',
         'as' => 'signin'
+
+    ]);
+    Route::get('/disconnect', [
+        'uses' => 'UserController@getDisconnect',
+        'as' => 'disconnect'
 
     ]);
 

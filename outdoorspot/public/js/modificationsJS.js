@@ -29,6 +29,8 @@ $("#modal-save").on('click', function () {
 
 
 
+
+
     var header = {
         'X-CSRF-TOKEN': $('meta[name="csrf-token"]').attr('content')
     };
@@ -53,6 +55,7 @@ $("#modal-save").on('click', function () {
 
             $('#view-title').text(title);
             $('#view-body').text(body) ;
+
             $('#edit-modal').modal('hide');
         })
         .fail(function (msg) {

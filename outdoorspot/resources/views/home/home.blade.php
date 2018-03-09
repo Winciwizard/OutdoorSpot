@@ -15,28 +15,33 @@
 
             @foreach($posts as $post)
 
-                <div class="container ">
+                <div class="container card card-body bg-light">
 
                     <div class="row ">
-                        <div class="col-md-6 offset-md-3">
+                        <div class="col-md-8 offset-md-2">
 
 
                 <article class="post ">
 
                     <h3 id="view-title">{{$post->post_title}}</h3>
-                    <img  src="{{asset('storage/'. $post->post_image)}}" class="spot-img"/>
+                    <img  src="{{asset('storage/'. $post->post_image)}}" class="spot-img card-img"/>
+                    <h5>Description</h5>
+                    <div class="card card-body bg-ligth">
+
                     <p id="view-body">
+
                         {{$post->description}}
                     </p>
+                    </div>
                     <div class="info">Posted {{$post->created_at}}
                     </div>
-                    <div class="interaction border border-dark">
+                    <div class="interaction ">
 
 
-                        <a href="#">like</a>
-                        <a href="#">Dilike</a>
-                        <a href="" class="edit" data-postid="{{$post->id}}">Edit</a>
-                        <a href="{{route('post.delete', ['post_id' =>$post->id])}}" class="delete">Delete</a>
+                        <button class="btn "><a href="#">like</a></button>
+                        <button class="btn "> <a href="#">Dilike</a></button>
+                        <button class="btn "> <a href="" class="edit" data-postid="{{$post->id}}">Edit</a></button>
+                        <button class="btn "> <a href="{{route('post.delete', ['post_id' =>$post->id])}}" class="delete">Delete</a></button>
                     </div>
                 </article>
                         </div>
