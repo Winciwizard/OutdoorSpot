@@ -2,28 +2,34 @@
 
 namespace App;
 
-use Illuminate\Notifications\Notifiable;
-use Illuminate\Foundation\Auth\User as Authenticatable;
+use Illuminate\Contracts\Auth\Authenticatable;
+use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\HasMany;
 
-class User extends Authenticatable
+class User extends Model implements Authenticatable
 {
-    use Notifiable;
+    use \Illuminate\Auth\Authenticatable;
+    /**
+     * @return HasMany
+     */
+    public function posts()
+    {
+        return $this->hasMany('App\Post');
+    }
 
     /**
-     * The attributes that are mass assignable.
-     *
-     * @var array
+     * @return HasMany
      */
-    protected $fillable = [
-        'name', 'email', 'password',
-    ];
+    public function comments()
+    {
+        return $this->hasMany('App\Post');
+    }
 
     /**
-     * The attributes that should be hidden for arrays.
-     *
-     * @var array
+     * @return HasMany
      */
-    protected $hidden = [
-        'password', 'remember_token',
-    ];
+    public function likes()
+    {
+        return $this->hasMany('App\Like');
+    }
 }

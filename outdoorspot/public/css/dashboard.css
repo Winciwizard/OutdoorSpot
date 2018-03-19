@@ -1,0 +1,197 @@
+body
+{
+    font-family: 'Roboto Condensed', sans-serif;
+    background: #f9f9f9;
+}
+
+li
+{
+    list-style-type: none;
+}
+
+/** Menu du site */
+#menu_connect
+{
+    display: flex;
+    justify-content: flex-end;
+    padding-top: 15px;
+    padding-right: 5px;
+}
+
+.menu_icon
+{
+    margin-top: 5px;
+    padding: 0 4px 0 4px;
+    font-size: 20px;
+}
+
+.menu_lien:link, .menu_lien:visited, .menu_lien:active
+{
+    color: white;
+}
+
+.menu_lien:hover
+{
+    color: rgba(107, 255, 19, 0.5);
+}
+
+#menu_lien_share:link, #menu_lien_share:visited, #menu_lien_share:active
+{
+    color: black;
+}
+
+#menu_lien_share:hover
+{
+    color: grey;
+}
+
+nav
+{
+    background: black;
+    height: 68px;
+    margin-bottom: 20px;
+}
+
+#logo_title
+{
+    color: white;
+    font-family: 'Permanent Marker', cursive;
+    font-size: 26px;
+    padding-top: 6px;
+    padding-left: 25px;
+}
+
+#retour-flux
+{
+    color: white;
+    text-decoration: none;
+}
+
+.menu
+{
+    position: fixed;
+    width: 100%;
+    margin: 0;
+    z-index: 1;
+}
+
+/** Post du flux - Toute les section*/
+
+/** Mise en forme du flux des posts*/
+.all
+{
+    margin-top: 70px;
+    margin-bottom: 30px;
+}
+
+.post
+{
+    margin-top: 30px;
+    border: 1px solid lightgray;
+    border-radius: 3px;
+    background-color: white;
+    padding: 10px 0 15px 0;
+}
+
+
+/** Photo et pseudo du User */
+.account
+{
+    margin-left: 10px;
+}
+
+.nano-image
+{
+
+    width: 30px;
+    border-radius: 15px;
+}
+
+/** Photo du post */
+.spot-img
+{
+    margin-top: 5px;
+    width: 100%;
+}
+
+/** Sous la photo*/
+.under-picture
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.like-color
+{
+    color: red;
+}
+
+#map
+{
+    height: 300px;
+    width: 100%;
+}
+
+.map-info, .map-info:hover
+{
+    font-size: small;
+    color: green;
+    text-decoration: none;
+}
+
+.edit-delete
+{
+    margin-left: 10px;
+    margin-right: 10px;
+    size: 10px;
+    font-weight: bold;
+}
+
+.edit, .edit:hover, .delete, .delete:hover
+{
+    color: lightgray;
+}
+
+.description
+{
+    font-size: 18px;
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+
+.commentaire, .commentaire:hover
+{
+    color: lightgray;
+}
+
+.commentaires
+{
+    margin-left: 10px;
+    margin-right: 10px;
+}
+
+.test
+{
+    display: flex;
+    justify-content: space-between;
+
+}
+
+.posted
+{
+    font-weight: 100;
+    color:darkgrey;
+}
+
+.com-form
+{
+    margin-top: 8px;
+}
+
+.input-com
+{
+    background-color: #f9f9f9;
+}
+
+/** fin du block Post*/
