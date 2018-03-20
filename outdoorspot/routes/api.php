@@ -13,6 +13,13 @@ use Illuminate\Http\Request;
 |
 */
 
-Route::middleware('auth:api')->get('/user', function (Request $request) {
+Route::middleware('auth:api')->get('/auth', function (Request $request) {
     return $request->user();
 });
+
+Route::resources([
+    'users' => 'UserApiController',
+    'posts' => 'PostApiController',
+    'comments' => 'CommentApiController',
+    'likes' => 'LikeApiController'
+]);

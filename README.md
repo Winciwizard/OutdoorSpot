@@ -1,6 +1,6 @@
 # OutdoorSpot
 
-##Installation
+## Installation
 
 1. Clone the project
 2. Got to the folder application using `cd`

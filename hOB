@@ -1,0 +1,23 @@
+[33mcommit 50474e6335d1ffce114f37ae1b755bacdee241af[m
+Author: Winciwizard <vincent.verges@gmail.com>
+Date:   Thu Feb 22 14:05:03 2018 +0100
+
+    Post un nouveau spot OK et Affichage sur le dashboard
+
+[33mcommit 595ef7ea322a86b52456bce82dc127506dfc3e3d[m
+Author: Winciwizard <vincent.verges@gmail.com>
+Date:   Tue Feb 20 16:25:24 2018 +0100
+
+    Mise à jour du README.md pour les informations d'instalation
+
+[33mcommit 7ce586d40da044deff7b9f9bcdbd30b28d298372[m
+Author: Winciwizard <vincent.verges@gmail.com>
+Date:   Tue Feb 20 15:17:55 2018 +0100
+
+    Version laravel base pour la plateforme OutdoorSpot
+
+[33mcommit 89ecba15b2606d2e6c9a9dc822a2f48b5a4ac9d7[m
+Author: Winciwizard <vincent.verges@gmail.com>
+Date:   Tue Feb 20 15:02:25 2018 +0100
+
+    Initial commit
