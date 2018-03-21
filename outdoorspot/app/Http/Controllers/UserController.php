@@ -19,7 +19,7 @@ class UserController extends Controller
      * @param Request $request
      * @return Route
      */
-    public function postUserCreate(Request $request): Route
+    public function postUserCreate(Request $request)
     {
         $this->validate($request, [
             'email' => 'required|email|unique:users|max:255',
