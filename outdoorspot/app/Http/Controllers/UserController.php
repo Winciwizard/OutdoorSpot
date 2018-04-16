@@ -56,25 +56,25 @@ class UserController extends Controller
         /** Verification de la presence de l'élèment à changer et l'integre à l'objet */
        if(isset($request->pseudo))
        {
-           $this->validate($request, ['pseudo' => 'required|unique:users|max:255']);
+           //$this->validate($request, ['pseudo' => 'unique:users|max:255']);
            $user->setAttribute('pseudo',$request->input('pseudo'));
        }
 
        if(isset($request->nom))
        {
-           $this->validate($request, ['nom' => 'required|max:255']);
+           //$this->validate($request, ['nom' => 'max:255']);
            $user->setAttribute('nom',$request->input('nom'));
        }
 
        if(isset($request->prenom))
        {
-           $this->validate($request, ['prenom' => 'required|max:255']);
+           //$this->validate($request, ['prenom' => 'max:255']);
            $user->setAttribute('prenom',$request->input('prenom'));
        }
 
        if(isset($request->description))
        {
-           $this->validate($request, ['description' => 'required|max:255']);
+           //$this->validate($request, ['description' => 'max:255']);
            $user->setAttribute('description',$request->input('description'));
        }
 
@@ -86,7 +86,7 @@ class UserController extends Controller
                 return redirect()->back();
             }
 
-            $this->validate($request, ['password' => 'required|min:8']);
+            //$this->validate($request, ['password' => 'min:8']);
             /** Verification que le nouveau et l'ancien pass ne soit pas les même*/
             if(strcmp($request->get('oldpass'), $request->get('newpass')) == 0 )
             {
@@ -103,7 +103,7 @@ class UserController extends Controller
         /** Si il y a un fichier, il enregistre et change le nomn dans la BDD */
        if($file)
        {
-           $this->validate($request, ['image' => 'required|mimes:jpg,jpeg']);
+           //$this->validate($request, ['image' => 'mimes:jpg,jpeg']);
            $cover = 'profil/'.md5(uniqid()).'.jpg';
            $user->setAttribute('user_image', $cover);
            Storage::disk('local')->put('public/'.$cover, File::get($file));
