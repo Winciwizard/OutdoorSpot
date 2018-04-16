@@ -74,6 +74,18 @@ class UserApiController extends Controller
     public function update(Request $request, User $user)
     {
         /** Verification de la presence de l'élèment à changer et l'integre à l'objet */
+        if(isset($request->latitude))
+        {
+            //$this->validate($request, ['pseudo' => 'required|unique:users|max:255']);
+            $user->setAttribute('latitude',$request->input('latitude'));
+        }
+
+        if(isset($request->longitude))
+        {
+            //$this->validate($request, ['pseudo' => 'required|unique:users|max:255']);
+            $user->setAttribute('longitude',$request->input('longitude'));
+        }
+
         if(isset($request->pseudo))
         {
             //$this->validate($request, ['pseudo' => 'required|unique:users|max:255']);
